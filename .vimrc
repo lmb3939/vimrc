@@ -90,7 +90,8 @@
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    au BufRead,BufNewFile *.v,*.c match OverLength /\%81v.*/
+    "au BufRead,BufNewFile *.v,*.c match OverLength /\%81v.*/
+    au BufRead,BufNewFile *.v,*.vhd,*.c match OverLength /\%80v.*/
 " }
 
 " Formatting {
@@ -239,6 +240,9 @@
     " Diffsplit
     nnoremap <C-F2> :vert diffsplit
 
+    :vmap sb \"zdi<b><C-R>z</b><ESC>
+    au FocusLost * silent! wa
+
     " }
 
     " Basic Edit {
@@ -287,6 +291,7 @@
         let g:ale_echo_msg_warning_str = 'W'
         let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
         let g:ale_linters = {
+                    \ 'systemverilog': ['xvlog'],
                     \ 'verilog': ['xvlog'],
                     \ }
         let g:airline#extensions#ale#error_symbol = '✗ '
@@ -301,6 +306,12 @@
     " Coc{
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/coc.nvim"))
         inoremap <silent><expr> <c-space> coc#refresh()
+    endif
+    " }
+
+    " vim-tex{
+    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vimtex"))
+        let g:tex_flavor = 'plain'
     endif
     " }
 
@@ -393,7 +404,8 @@
         let g:airline_right_alt_sep = ''
         let g:airline_symbols.branch = ''
         let g:airline_symbols.readonly = ''
-        let g:airline_symbols.linenr = '☰'
+        let g:airline_symbols.linenr = '¶'
+	"let g:airline_symbols.linenr = '☰'
     endif
 
     " }
@@ -439,9 +451,10 @@
     "}
 
     " vim supertab {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-supertab"))
+    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/supertab"))
         let g:SuperTabDefaultCompletionType = "context"
         let g:SuperTabRetainCompletionType=2
+        let g:SuperTabDefaultCompletionType="<c-n>"
     endif
     " }
 
@@ -479,7 +492,7 @@
         let g:which_key_map =  {}
         let g:which_key_map.f = { 'name' : '+file' }
 
-        nnoremap <silent> <leader>fs :update<CR>
+        nnoremap <silent> <leader>fs :w<CR>
         let g:which_key_map.f.s = 'save-file'
 
         let g:which_key_map['w'] = {
