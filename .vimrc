@@ -39,6 +39,8 @@
     set fillchars=vert:\ ,stl:\ ,stlnc:\
     set go=                         " close gui menu
     au GUIEnter * simalt ~x         " Full Screen when start vim
+    "set guioptions +=b
+    "set guioptions +=r
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -72,26 +74,27 @@
 
     " Theme, fonts , etc {
     " color and fonts
-    set bg=light
-    "set bg=dark
+    "set bg=light
+    set bg=dark
 
-    "color solarized8
-    color papercolor
+    color space-vim-dark
+    "color dracula
+    "color gruvbox
+    "color papercolor
     "color Atelier_SulphurpoolDark
-    "color iceberg
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
-    "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI noanti
-    set guifont=Source_Code_Pro_for_PowerLine:h14:cANSI noanti
+    "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI "noanti
+    "set guifont=Source_Code_Pro_for_PowerLine:h14:cANSI noanti
+
     "set guifont=Consolas-with-Yahei:i:h14:cANSI
     "set guifont=Andale_Mono:h14:cANSI
-    "set guifont=Operator_Mono_Book:h14:cANSI
+    set guifont=Operator_Mono_Book:h14:cANSI
     " }
 
-    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    "au BufRead,BufNewFile *.v,*.c match OverLength /\%81v.*/
-    au BufRead,BufNewFile *.v,*.vhd,*.c match OverLength /\%80v.*/
+    highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
+    au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
 " }
 
 " Formatting {
@@ -176,8 +179,6 @@
     " }
 
     " Navigation {
-    nnoremap <CR> G
-    nnoremap <BS> gg
 
     " Easier horizontal scrolling
     map zl zL
@@ -228,6 +229,12 @@
     imap jj <ESC>
     nnoremap <ESC> :nohl<CR>
 
+    " Shift+*: do not goto next match
+    nnoremap <silent><expr> * v:count ? '*'
+                \ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+    nnoremap <silent><expr> g* v:count ? 'g*'
+                \ : ':execute "keepjumps normal! g*" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+
     " Make a simple "search" text object.
     vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
                 \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
@@ -242,6 +249,8 @@
 
     :vmap sb \"zdi<b><C-R>z</b><ESC>
     au FocusLost * silent! wa
+    " fold all but the matched area
+    nnoremap zpr :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>:set foldmethod=manual<CR><CR>
 
     " }
 
@@ -260,18 +269,18 @@
     set nowb
     set noswapfile
     set confirm          " prompt when existing from an unsaved file
-    set t_Co=256         " Explicitly tell vim that the terminal has 256 colors "
+    set t_Co=256         " Explicitly tell vim that the terminal has 256 colors
     set mouse=a          " Automatically enable mouse usage
     set gcr:a:blinkon0   " No blink
     set mousehide        " Hide the mouse cursor while typing
-    set report=0         " always report number of lines changed                "
+    set report=0         " always report number of lines changed
     set matchtime=2      " show matching bracket for 0.2 seconds
     set matchpairs+=<:>  " specially for html
     set nojoinspaces     " Prevents inserting two spaces after punctuation on a join (J)
     set tabpagemax=15    " Only show 15 tabs
-    "set scrolljump=5                " Lines to scroll when cursor leaves screen
-    "set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
+    "set scrolljump=5     " Lines to scroll when cursor leaves screen
+    "set scrolloff=3      " Minimum lines to keep above and below cursor
+    set foldenable        " Auto fold code
     set foldmethod=marker
     set foldmarker={{{,}}}
     " }
@@ -293,6 +302,9 @@
         let g:ale_linters = {
                     \ 'systemverilog': ['xvlog'],
                     \ 'verilog': ['xvlog'],
+                    \ 'c': ['gcc'],
+                    \ 'python': ['pyflakes'],
+                    \ 'perl': ['perlcritic']
                     \ }
         let g:airline#extensions#ale#error_symbol = '✗ '
         let g:airline#extensions#ale#warning_symbol = '⚡ '
@@ -311,7 +323,16 @@
 
     " vim-tex{
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vimtex"))
-        let g:tex_flavor = 'plain'
+        autocmd TextChanged,TextChangedI <buffer> silent write
+        let g:tex_flavor = 'latex'
+        "let g:vimtex_view_method='mupdf'
+        let g:vimtex_view_general_viewer = 'SumatraPDF'
+        let g:vimtex_view_general_options
+                    \ = '-reuse-instance -forward-search @tex @line @pdf'
+        let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+        let g:vimtex_quickfix_mode=0
+        set conceallevel=1
+        let g:tex_conceal='abdmg'
     endif
     " }
 
@@ -386,9 +407,7 @@
         if !exists ('g:airline_symbols')
             let g:airline_symbols = {}
         endif
-        "let g:airline_theme = 'onedark'
-        "let g:airline_theme = 'papercolor'
-        let g:airline_theme = 'dracula'
+        let g:airline_theme = 'papercolor'
 
         " tabline
         let g:airline#extensions#tabline#enabled = 1
@@ -529,27 +548,39 @@
                     \ '?' : ['Buffers'   , 'fzf-buffer']      ,
                     \ }
 
+        let g:which_key_map.v = {
+                    \ 'name' : '+Vimtex' ,
+                    \ '1' : ['VimtexClean', 'VimtexClean'],
+                    \ '2' : ['VimtexCompile', 'VimtexCompile'],
+                    \ '3' : ['VimtexCountWords', 'VimtexCountWords'],
+                    \ '4' : ['VimtexView', 'VimtexView'],
+                    \ '5' : ['VimtexErrors', 'VimtexErrors'],
+                    \ '6' : ['VimtexStatus', 'VimtexStatus'],
+                    \}
+
     endif
     "}
 
     " quickui {
-    call quickmenu#reset()
+    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-quickui"))
+        call quickmenu#reset()
 
-    "let g:quickmenu_options = "HL"
-    "noremap <silent><F12> :call quickmenu#toggle(0)
-    "call quickmenu#append("# Debug", '')
-    noremap <silent><F12> :call quickui#menu#open()<cr>
-    call quickui#menu#install('&File', [
-                \ [ "&New File\tCtrl+n", 'echo 0' ],
-                \ [ "&Open File\t(F3)", 'echo 1' ],
-                \ [ "&Close", 'echo 2' ],
-                \ [ "--", '' ],
-                \ [ "&Save\tCtrl+s", 'echo 3'],
-                \ [ "Save &As", 'echo 4' ],
-                \ [ "Save All", 'echo 5' ],
-                \ [ "--", '' ],
-                \ [ "E&xit\tAlt+x", 'echo 6' ],
-                \ ])
+        "let g:quickmenu_options = "HL"
+        "noremap <silent><F12> :call quickmenu#toggle(0)
+        "call quickmenu#append("# Debug", '')
+        noremap <silent><F12> :call quickui#menu#open()<cr>
+        call quickui#menu#install('&File', [
+                    \ [ "&New File\tCtrl+n", 'echo 0' ],
+                    \ [ "&Open File\t(F3)", 'echo 1' ],
+                    \ [ "&Close", 'echo 2' ],
+                    \ [ "--", '' ],
+                    \ [ "&Save\tCtrl+s", 'echo 3'],
+                    \ [ "Save &As", 'echo 4' ],
+                    \ [ "Save All", 'echo 5' ],
+                    \ [ "--", '' ],
+                    \ [ "E&xit\tAlt+x", 'echo 6' ],
+                    \ ])
+    endif
     " }
 
     " After

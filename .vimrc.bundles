@@ -10,7 +10,6 @@ Plug 'w0rp/ale'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'xuyuanp/nerdtree-git-plugin'
 
 " Grep
 Plug 'jreybert/vimagit'
@@ -19,34 +18,27 @@ Plug 'dkprice/vim-easygrep'
 " GUI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'lfv89/vim-interestingwords'
-Plug 'guns/xterm-color-table.vim'
 
 " theme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'atelierbram/vim-colors_atelier-schemes'
-Plug 'lifepillar/vim-solarized8'
-Plug 'cocopon/iceberg.vim'
-Plug 'dracula/vim'
-Plug 'ashfinal/vim-colors-violet'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'liuchengxu/space-vim-dark'
 
 " Search, Files, Buffer, Find...
 Plug 'easymotion/vim-easymotion'
 Plug 'wesleyche/SrcExpl'
-Plug 'scrooloose/nerdtree'
-Plug 'haya14busa/is.vim'
-Plug 'osyo-manga/vim-anzu'
-Plug 'haya14busa/vim-asterisk'
 
 " Edit
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mbbill/undotree'
+Plug 'godlygeek/tabular'
 Plug 'vim-scripts/VisIncr'
 Plug 'terryma/vim-expand-region'
 Plug 'mg979/vim-visual-multi'
-Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
@@ -55,12 +47,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
-
-" Try
-Plug 'liuchengxu/vim-which-key'
-Plug 'skywind3000/vim-quickui'
-Plug 'skywind3000/quickmenu.vim'
+Plug 'lervag/vimtex'
+Plug 'vimwiki/vimwiki'
 
 " Oth
 Plug 'xolox/vim-misc'
@@ -68,19 +56,7 @@ Plug 'xolox/vim-misc'
 "-------------------------------------------------------
 " Separator, Separator, Separator, Separator, Separator
 "-------------------------------------------------------
-"Plug 'Yggdroot/LeaderF'            --> +python3
-"Plug 'mhinz/vim-startify'
-"Plug 'terryma/vim-smooth-scroll'
-"Plug 'junegunn/goyo.vim'
-"Plug 'mhinz/vim-galore'
-"Plug 'xolox/vim-session'
-"Plug 'vim-scripts/AutoComplPop'    -->     Coc
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'gregsexton/gitv'
-"Plug 'Shougo/unite.vim'
-"Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
-"Plug 'maciakl/vim-neatstatus'
+"Plug 'glepnir/dashboard-nvim'
+"Plug 'voldikss/vim-floaterm'
 
 call plug#end()
-
