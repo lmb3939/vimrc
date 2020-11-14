@@ -27,11 +27,10 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'liuchengxu/space-vim-dark'
+"Plug 'liuchengxu/space-vim-dark'
 
 " Search, Files, Buffer, Find...
 Plug 'easymotion/vim-easymotion'
-Plug 'wesleyche/SrcExpl'
 
 " Edit
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -47,8 +46,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdcommenter'
-Plug 'lervag/vimtex'
-Plug 'vimwiki/vimwiki'
 
 " Oth
 Plug 'xolox/vim-misc'
@@ -58,5 +55,8 @@ Plug 'xolox/vim-misc'
 "-------------------------------------------------------
 "Plug 'glepnir/dashboard-nvim'
 "Plug 'voldikss/vim-floaterm'
+"Plug 'wesleyche/SrcExpl'
+"Plug 'lervag/vimtex'
+"Plug 'vimwiki/vimwiki'
 
 call plug#end()

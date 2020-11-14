@@ -77,8 +77,8 @@
     "set bg=light
     set bg=dark
 
-    color space-vim-dark
-    "color dracula
+    "color space-vim-dark
+    color dracula
     "color gruvbox
     "color papercolor
     "color Atelier_SulphurpoolDark
@@ -86,11 +86,11 @@
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
     "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI "noanti
-    "set guifont=Source_Code_Pro_for_PowerLine:h14:cANSI noanti
+    set guifont=Source_Code_Pro:h14:cANSI noanti
 
     "set guifont=Consolas-with-Yahei:i:h14:cANSI
     "set guifont=Andale_Mono:h14:cANSI
-    set guifont=Operator_Mono_Book:h14:cANSI
+    "set guifont=Operator_Mono_Book:h14:cANSI
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
@@ -214,20 +214,9 @@
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-    " eggcache vim
-    if has('gui_running')
-        nnoremap ; :
-        :command W w
-        :command WQ wq
-        :command Wq wq
-        :command Q q
-        :command Qa qa
-        :command QA qa
-    endif
-
-    " Esc
+    " nnoremap ; :
+    " nnoremap <ESC> :nohl<CR>
     imap jj <ESC>
-    nnoremap <ESC> :nohl<CR>
 
     " Shift+*: do not goto next match
     nnoremap <silent><expr> * v:count ? '*'
@@ -460,14 +449,6 @@
         let g:indent_guides_enable_on_vim_startup = 1
     endif
     " }
-
-    "srcexpl {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-srcexpl"))
-        let g:SrcExpl_updateTagsCmd = 'ctags -R *.*'
-        let g:SrcExpl_winHeight = 16
-        nnoremap <leader>se :SrcExplToggle<CR>
-    endif
-    "}
 
     " vim supertab {
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/supertab"))
