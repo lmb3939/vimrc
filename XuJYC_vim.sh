@@ -72,7 +72,12 @@ curl_plug(){
     msg "Trying to install plug.vim"
 
     ## install plug
-    curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ## TODO:    
+    local tmp_file="/home/mint/workspace/vimrc/plug.vim"
+    local dst_file="plug.vim"
+    mkdir -p $plug_path
+    cp $tmp_file $plug_path$dst_file
 
     success "Successfully curled Vim plug."
 
@@ -142,7 +147,8 @@ sync_repo       "$APP_PATH" \
                 "$REPO_BRANCH" \
                 "$app_name"
 
-curl_plug      "$APP_PATH/.vim/autoload/plug.vim"
+# curl_plug      "$APP_PATH/.vim/autoload/plug.vim"
+curl_plug      "$APP_PATH/.vim/autoload/"
 
 create_symlinks "$APP_PATH" \
                 "$HOME"
