@@ -39,8 +39,10 @@
     set fillchars=vert:\ ,stl:\ ,stlnc:\
     set go=                         " close gui menu
     au GUIEnter * simalt ~x         " Full Screen when start vim
-    "set guioptions +=b
-    "set guioptions +=r
+    if has('gui_running')
+        set guioptions +=b
+        set guioptions +=r
+    endif
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -86,11 +88,11 @@
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
     "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI "noanti
-    set guifont=Source_Code_Pro:h14:cANSI noanti
+    "set guifont=Source_Code_Pro:h14:cANSI noanti
 
     "set guifont=Consolas-with-Yahei:i:h14:cANSI
     "set guifont=Andale_Mono:h14:cANSI
-    "set guifont=Operator_Mono_Book:h14:cANSI
+    set guifont=Operator_Mono_Book:h14:cANSI
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
@@ -214,8 +216,10 @@
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-    " nnoremap ; :
-    " nnoremap <ESC> :nohl<CR>
+    if has('gui_running')
+        nnoremap ; :
+        nnoremap <ESC> :nohl<CR>
+    endif
     imap jj <ESC>
 
     " Shift+*: do not goto next match
