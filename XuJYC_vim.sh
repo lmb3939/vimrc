@@ -74,7 +74,7 @@ curl_plug(){
     ## install plug
     ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ## TODO:    
-    local tmp_file="/home/mint/workspace/vimrc/plug.vim"
+    local tmp_file="$HOME/vimrc/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
     cp $tmp_file $plug_path$dst_file

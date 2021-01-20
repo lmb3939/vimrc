@@ -5,7 +5,7 @@ set rtp+=~/.vimrc_oob/.vim
 call plug#begin('~/.vimrc_oob/.vim/bundle')
 
 " Syntax, Snippets
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -33,7 +33,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'easymotion/vim-easymotion'
 
 " Edit
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/VisIncr'
 Plug 'terryma/vim-expand-region'
