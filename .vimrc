@@ -87,12 +87,12 @@
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
+    " Ubuntu
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 14 noanti
+    "set guifont=Andale\ Mono\ Plus\ 14
+    " Windows
     "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI "noanti
-    "set guifont=Source_Code_Pro:h14:cANSI noanti
-
-    "set guifont=Consolas-with-Yahei:i:h14:cANSI
     "set guifont=Andale_Mono:h14:cANSI
-    set guifont=Operator_Mono_Book:h14:cANSI
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
