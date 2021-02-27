@@ -38,11 +38,11 @@
     " show gap in two split windows
     set fillchars=vert:\ ,stl:\ ,stlnc:\
     set go=                         " close gui menu
-    au GUIEnter * simalt ~x         " Full Screen when start vim
-    if has('gui_running')
-        set guioptions +=b
-        set guioptions +=r
-    endif
+    "au GUIEnter * simalt ~x         " Full Screen when start vim
+    "if has('gui_running')
+    "    set guioptions +=b
+    "    set guioptions +=r
+    "endif
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
