@@ -769,7 +769,8 @@ function! s:infer_properties(name, repo)
       if repo !~ '/'
         throw printf('Invalid argument: %s (implicit `vim-scripts'' expansion is deprecated)', repo)
       endif
-      let fmt = get(g:, 'plug_url_format', 'https://git::@github.com/%s.git')
+      " let fmt = get(g:, 'plug_url_format', 'https://git::@github.com/%s.git')
+      let fmt = get(g:, 'plug_url_format', 'https://git::@hub.fastgit.org/%s.git')
       let uri = printf(fmt, repo)
     endif
     return { 'dir': s:dirpath(g:plug_home.'/'.a:name), 'uri': uri }
@@ -935,7 +936,7 @@ function! s:prepare(...)
     call s:new_window()
   endif
 
-  nnoremap <silent> <buffer> q  :if b:plug_preview==1<bar>pc<bar>endif<bar>bd<cr>
+  nnoremap <silent> <buffer> q :call <SID>close_pane()<cr>
   if a:0 == 0
     call s:finish_bindings()
   endif
@@ -954,6 +955,15 @@ function! s:prepare(...)
   setf vim-plug
   if exists('g:syntax_on')
     call s:syntax()
+  endif
+endfunction
+
+function! s:close_pane()
+  if b:plug_preview == 1
+    pc
+    let b:plug_preview = -1
+  else
+    bd
   endif
 endfunction
 
@@ -1156,7 +1166,8 @@ function! s:update_impl(pull, force, args) abort
     let $GIT_TERMINAL_PROMPT = 0
     for plug in values(todo)
       let plug.uri = substitute(plug.uri,
-            \ '^https://git::@github\.com', 'https://github.com', '')
+            " \ '^https://git::@github\.com', 'https://github.com', '')
+            \ '^https://git::@hub.fastgit\.org', 'https://hub.fastgit.org', '')
     endfor
   endif
 
@@ -1532,7 +1543,7 @@ while 1 " Without TCO, Vim stack is bound to explode
     let [error, _] = s:git_validate(spec, 0)
     if empty(error)
       if pull
-        let cmd = ['git', 'fetch']
+        let cmd = s:git_version_requirement(2) ? ['git', '-c', 'credential.helper=', 'fetch'] : ['git', 'fetch']
         if has_tag && !empty(globpath(spec.dir, '.git/shallow'))
           call extend(cmd, ['--depth', '99999999'])
         endif
