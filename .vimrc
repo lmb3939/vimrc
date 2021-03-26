@@ -81,12 +81,13 @@
     "color gruvbox
     "color papercolor
     "color Atelier_SulphurpoolDark
-    color Atelier_SulphurpoolLight
-    "color inkstained
+    "color Atelier_SulphurpoolLight
+    color inkstained
+    "color zephyr
+
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
-    set guifont=UbuntuMono\ Nerd\ Font:h12
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
@@ -297,8 +298,8 @@
                     \ 'python': ['pyflakes'],
                     \ 'perl': ['perlcritic']
                     \ }
-        let g:airline#extensions#ale#error_symbol = '✗ '
-        let g:airline#extensions#ale#warning_symbol = '⚡ '
+        "let g:airline#extensions#ale#error_symbol = '✗ '
+        "let g:airline#extensions#ale#warning_symbol = '⚡ '
     endif
     "}
 
@@ -399,30 +400,30 @@
     " }
 
     " airline {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-airline"))
-        let g:airline#_powerline_fonts = 1
-        if !exists ('g:airline_symbols')
-            let g:airline_symbols = {}
-        endif
-        let g:airline_theme = 'papercolor'
+    "if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-airline"))
+    "    let g:airline#_powerline_fonts = 1
+    "    if !exists ('g:airline_symbols')
+    "        let g:airline_symbols = {}
+    "    endif
+    "    let g:airline_theme = 'papercolor'
 
-        " tabline
-        let g:airline#extensions#tabline#enabled = 1
-        let g:airline#extensions#tabline#buffer_nr_show = 1
-        let g:airline#extensions#tabline#left_sep = ''
-        let g:airline#extensions#tabline#left_alt_sep = ''
-        let g:airline#extensions#tabline#right_sep = ''
-        let g:airline#extensions#tabline#right_alt_sep = ''
-        " statusline
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-        let g:airline_symbols.branch = ''
-        let g:airline_symbols.readonly = ''
-        let g:airline_symbols.linenr = '¶'
-	"let g:airline_symbols.linenr = '☰'
-    endif
+    "    " tabline
+    "    let g:airline#extensions#tabline#enabled = 1
+    "    let g:airline#extensions#tabline#buffer_nr_show = 1
+    "    let g:airline#extensions#tabline#left_sep = ''
+    "    let g:airline#extensions#tabline#left_alt_sep = ''
+    "    let g:airline#extensions#tabline#right_sep = ''
+    "    let g:airline#extensions#tabline#right_alt_sep = ''
+    "    " statusline
+    "    let g:airline_left_sep = ''
+    "    let g:airline_left_alt_sep = ''
+    "    let g:airline_right_sep = ''
+    "    let g:airline_right_alt_sep = ''
+    "    let g:airline_symbols.branch = ''
+    "    let g:airline_symbols.readonly = ''
+    "    let g:airline_symbols.linenr = '¶'
+	""let g:airline_symbols.linenr = '☰'
+    "endif
 
     " }
 
@@ -643,5 +644,13 @@
 
         "nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
 " }
+
+"augroup ScrollbarInit
+"    autocmd!
+"    autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+"    autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+"    autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+"augroup end
+
 
 " Have a nice day!

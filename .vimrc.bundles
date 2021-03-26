@@ -18,6 +18,8 @@ Plug 'dkprice/vim-easygrep'
 " GUI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -29,6 +31,8 @@ Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'liuchengxu/space-vim-dark'
 Plug 'yuttie/inkstained-vim'
+Plug 'glepnir/zephyr-nvim'
+
 
 " Search, Files, Buffer, Find...
 Plug 'easymotion/vim-easymotion'
@@ -41,6 +45,11 @@ Plug 'skywind3000/quickmenu.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'Shougo/defx.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'kristijanhusak/defx-icons'
 
 " Edit
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,6 +67,11 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdcommenter'
 Plug 'psliwka/vim-smoothie'
 Plug 'dagwieers/asciidoc-vim'
+Plug 'danilamihailov/beacon.nvim'
+
+" TODO
+"Plug 'Xuyuanp/scrollbar.nvim'
+"Plug 'nvim-treesitter/nvim-treesitter' " need C compiler
 
 "-------------------------------------------------------
 " Separator, Separator, Separator, Separator, Separator
@@ -68,11 +82,6 @@ Plug 'dagwieers/asciidoc-vim'
 "Plug 'Yggdroot/LeaderF'
 "Plug 'mbbill/fencview'
 "Plug 'xolox/vim-misc'
-
-Plug 'Shougo/defx.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'kristijanhusak/defx-icons'
 
 call plug#end()
 
