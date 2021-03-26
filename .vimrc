@@ -38,11 +38,11 @@
     " show gap in two split windows
     set fillchars=vert:\ ,stl:\ ,stlnc:\
     set go=                         " close gui menu
-    "au GUIEnter * simalt ~x         " Full Screen when start vim
-    "if has('gui_running')
-    "    set guioptions +=b
-    "    set guioptions +=r
-    "endif
+    " au GUIEnter * simalt ~x         " Full Screen when start vim
+    " if has('gui_running')
+    "     set guioptions +=b
+    "     set guioptions +=r
+    " endif
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -76,23 +76,20 @@
 
     " Theme, fonts , etc {
     " color and fonts
-    "set bg=light
-    set bg=dark
+    set bg=light
+    "set bg=dark
 
     "color space-vim-dark
-    color dracula
+    "color dracula
     "color gruvbox
     "color papercolor
     "color Atelier_SulphurpoolDark
+    color Atelier_SulphurpoolLight
+    "color inkstained
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
-    " Ubuntu
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 14 noanti
-    "set guifont=Andale\ Mono\ Plus\ 14
-    " Windows
-    "set guifont=Source_Code_Pro_for_PowerLine:i:h14:cANSI "noanti
-    "set guifont=Andale_Mono:h14:cANSI
+    set guifont=Monaco:h12
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
@@ -124,7 +121,7 @@
 
     " Super VIM {
     let mapleader = "\<Space>"
-    let maplocalleader = ","
+    "let maplocalleader = ","
 
     " Quickly edit/reload the vimrc file
     nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -216,10 +213,8 @@
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-    if has('gui_running')
-        nnoremap ; :
-        nnoremap <ESC> :nohl<CR>
-    endif
+    nnoremap ; :
+    nnoremap <ESC> :nohl<CR>
     imap jj <ESC>
 
     " Shift+*: do not goto next match
@@ -311,7 +306,13 @@
     " Coc{
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/coc.nvim"))
         inoremap <silent><expr> <c-space> coc#refresh()
+        :nnoremap <space>e :CocCommand explorer<CR>
     endif
+    " }
+
+    " fzf {
+    nnoremap <silent> <Leader>f :Files<CR>
+    nnoremap <silent> <Leader>b :Buffers<CR>
     " }
 
     " vim-tex{
