@@ -15,21 +15,18 @@ Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 Plug 'dkprice/vim-easygrep'
 
-" GUI
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-Plug 'ryanoasis/vim-devicons'
-
+" UI
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " theme
+Plug 'liuchengxu/space-vim-dark'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'liuchengxu/space-vim-dark'
 Plug 'yuttie/inkstained-vim'
 Plug 'glepnir/zephyr-nvim'
 
@@ -69,10 +66,6 @@ Plug 'psliwka/vim-smoothie'
 Plug 'dagwieers/asciidoc-vim'
 Plug 'danilamihailov/beacon.nvim'
 
-" TODO
-"Plug 'Xuyuanp/scrollbar.nvim'
-"Plug 'nvim-treesitter/nvim-treesitter' " need C compiler
-
 "-------------------------------------------------------
 " Separator, Separator, Separator, Separator, Separator
 "-------------------------------------------------------
@@ -81,7 +74,6 @@ Plug 'danilamihailov/beacon.nvim'
 "Plug 'lervag/vimtex'
 "Plug 'Yggdroot/LeaderF'
 "Plug 'mbbill/fencview'
-"Plug 'xolox/vim-misc'
 
 call plug#end()
 

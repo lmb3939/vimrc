@@ -2,7 +2,7 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 :
 "
 "    This is the personal .vimrc file of XuJYC.
-"    Copyright 2020 XuJYC.
+"    Copyright 2021 XuJYC.
 " }
 
 " plugin manager {
@@ -21,12 +21,10 @@
     set nocompatible
     filetype plugin indent on  " enable filetype dectection and ft specific plugin/indent
     syntax on                  " enable syntax hightlight and completion
-    "set fileencodings=utf-8
     set encoding=utf-8         " Necessary to show Unicode glyphs
     set fileencoding=utf-8
     set hidden
     let $LANG='en'             " Avoid garbled characters in Chinese language windows OS
-    "set helplang=cn
     source $VIMRUNTIME/delmenu.vim
     " }
 
@@ -35,9 +33,10 @@
 " Vim UI {
 
     " Basics {
+    set termguicolors
     " show gap in two split windows
     set fillchars=vert:\ ,stl:\ ,stlnc:\
-    set go=                         " close gui menu
+    "set go=                         " close gui menu
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -45,7 +44,6 @@
     au Winleave * set nocursorline nocursorcolumn
     au Winleave * set cursorline cursorcolumn
     set cursorline cursorcolumn
-    "set colorcolumn=80
 
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LinerNr         " current line number row will have same background color in relative mode
@@ -61,11 +59,6 @@
     set winminheight=0              " Windows can be 0 line high
     set ignorecase                  " Case insensitive search
     set smartcase                   " Case sensitive when uc present
-
-    " long time startup
-    "set title                       " show file in titlebar
-    "set wildmenu                    " Show list instead of just completing
-
     set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
     set list
@@ -82,9 +75,8 @@
     "color papercolor
     "color Atelier_SulphurpoolDark
     "color Atelier_SulphurpoolLight
-    color inkstained
-    "color zephyr
-
+    "color inkstained
+    color zephyr
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
@@ -247,7 +239,6 @@
     set t_vb=
     set history=10
 
-    " long time startup
     "set lazyredraw       " Don't redraw while executing macros (good performance config)
 
     set magic            " For regular expression turn magic on
@@ -269,12 +260,9 @@
     set tabpagemax=15    " Only show 15 tabs
     "set scrolljump=5     " Lines to scroll when cursor leaves screen
     "set scrolloff=3      " Minimum lines to keep above and below cursor
-
-    " long time startup
     "set foldenable        " Auto fold code
     "set foldmethod=marker
     "set foldmarker={{{,}}}
-
     " }
 
     " }
@@ -298,8 +286,8 @@
                     \ 'python': ['pyflakes'],
                     \ 'perl': ['perlcritic']
                     \ }
-        "let g:airline#extensions#ale#error_symbol = '✗ '
-        "let g:airline#extensions#ale#warning_symbol = '⚡ '
+        let g:airline#extensions#ale#error_symbol = '✗ '
+        let g:airline#extensions#ale#warning_symbol = '⚡ '
     endif
     "}
 
@@ -400,30 +388,31 @@
     " }
 
     " airline {
-    "if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-airline"))
-    "    let g:airline#_powerline_fonts = 1
-    "    if !exists ('g:airline_symbols')
-    "        let g:airline_symbols = {}
-    "    endif
-    "    let g:airline_theme = 'papercolor'
+    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-airline"))
+        let g:airline#_powerline_fonts = 1
+        if !exists ('g:airline_symbols')
+            let g:airline_symbols = {}
+        endif
+        let g:airline_theme = 'papercolor'
 
-    "    " tabline
-    "    let g:airline#extensions#tabline#enabled = 1
-    "    let g:airline#extensions#tabline#buffer_nr_show = 1
-    "    let g:airline#extensions#tabline#left_sep = ''
-    "    let g:airline#extensions#tabline#left_alt_sep = ''
-    "    let g:airline#extensions#tabline#right_sep = ''
-    "    let g:airline#extensions#tabline#right_alt_sep = ''
-    "    " statusline
-    "    let g:airline_left_sep = ''
-    "    let g:airline_left_alt_sep = ''
-    "    let g:airline_right_sep = ''
-    "    let g:airline_right_alt_sep = ''
-    "    let g:airline_symbols.branch = ''
-    "    let g:airline_symbols.readonly = ''
-    "    let g:airline_symbols.linenr = '¶'
-	""let g:airline_symbols.linenr = '☰'
-    "endif
+        " tabline
+        "let g:airline#extensions#tabline#enabled = 1
+        "let g:airline#extensions#tabline#buffer_nr_show = 1
+        "let g:airline#extensions#tabline#left_sep = ''
+        "let g:airline#extensions#tabline#left_alt_sep = ''
+        "let g:airline#extensions#tabline#right_sep = ''
+        "let g:airline#extensions#tabline#right_alt_sep = ''
+
+        " statusline
+        let g:airline_left_sep = ''
+        let g:airline_left_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
+        let g:airline_symbols.branch = ''
+        let g:airline_symbols.readonly = ''
+        "let g:airline_symbols.linenr = '¶'
+        let g:airline_symbols.linenr = '☰'
+    endif
 
     " }
 
@@ -611,31 +600,6 @@
         endif
     endif
 
-    " always make current line at screen center
-    "if !exists('noalwayscenter')
-    "    " Calculate proper scrolloff
-    "    autocmd VimEnter,WinEnter,VimResized,InsertLeave * :let &scrolloff = float2nr(floor(winheight(0)/2)+1)
-    "    autocmd InsertEnter * :let &scrolloff = float2nr(floor(winheight(0)/2))
-    "    " Use <Enter> to keep center in insert mode, need proper scrolloff
-    "    inoremap <CR> <CR><C-o>zz
-    "endif
-
-    "function! AccentDemo()
-    "    let keys = ['a','b','c','d','e','f','g','h']
-    "    for k in keys
-    "        call airline#parts#define_text(k, k)
-    "    endfor
-    "    call airline#parts#define_accent('a', 'red')
-    "    call airline#parts#define_accent('b', 'green')
-    "    call airline#parts#define_accent('c', 'blue')
-    "    call airline#parts#define_accent('d', 'yellow')
-    "    call airline#parts#define_accent('e', 'orange')
-    "    call airline#parts#define_accent('f', 'purple')
-    "    call airline#parts#define_accent('g', 'bold')
-    "    call airline#parts#define_accent('h', 'italic')
-    "    let g:airline_section_a = airline#section#create(keys)
-    "endfunction
-    "autocmd VimEnter * call AccentDemo()
 " }
 
 " TODO {
@@ -644,13 +608,5 @@
 
         "nmap <silent> * :let @/='\<'.expand('<cword>').'\>'<CR>
 " }
-
-"augroup ScrollbarInit
-"    autocmd!
-"    autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-"    autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-"    autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-"augroup end
-
 
 " Have a nice day!
