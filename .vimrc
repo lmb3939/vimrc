@@ -38,11 +38,6 @@
     " show gap in two split windows
     set fillchars=vert:\ ,stl:\ ,stlnc:\
     set go=                         " close gui menu
-    " au GUIEnter * simalt ~x         " Full Screen when start vim
-    " if has('gui_running')
-    "     set guioptions +=b
-    "     set guioptions +=r
-    " endif
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -66,8 +61,11 @@
     set winminheight=0              " Windows can be 0 line high
     set ignorecase                  " Case insensitive search
     set smartcase                   " Case sensitive when uc present
-    set title                       " show file in titlebar
-    set wildmenu                    " Show list instead of just completing
+
+    " long time startup
+    "set title                       " show file in titlebar
+    "set wildmenu                    " Show list instead of just completing
+
     set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
     set list
@@ -75,7 +73,6 @@
     " }
 
     " Theme, fonts , etc {
-    " color and fonts
     set bg=light
     "set bg=dark
 
@@ -89,7 +86,7 @@
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
-    set guifont=Monaco:h12
+    set guifont=UbuntuMono\ Nerd\ Font:h12
     " }
 
     highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
@@ -248,7 +245,10 @@
     set noeb
     set t_vb=
     set history=10
-    set lazyredraw       " Don't redraw while executing macros (good performance config)
+
+    " long time startup
+    "set lazyredraw       " Don't redraw while executing macros (good performance config)
+
     set magic            " For regular expression turn magic on
     set autoread         " auto reload when file was changed by other editor
     set autowrite
@@ -268,9 +268,12 @@
     set tabpagemax=15    " Only show 15 tabs
     "set scrolljump=5     " Lines to scroll when cursor leaves screen
     "set scrolloff=3      " Minimum lines to keep above and below cursor
-    set foldenable        " Auto fold code
-    set foldmethod=marker
-    set foldmarker={{{,}}}
+
+    " long time startup
+    "set foldenable        " Auto fold code
+    "set foldmethod=marker
+    "set foldmarker={{{,}}}
+
     " }
 
     " }
