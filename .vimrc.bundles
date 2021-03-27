@@ -9,10 +9,8 @@ Plug 'w0rp/ale'
 
 " Git
 Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
 
 " Grep
-Plug 'jreybert/vimagit'
 Plug 'dkprice/vim-easygrep'
 
 " UI
@@ -23,16 +21,14 @@ Plug 'vim-airline/vim-airline-themes'
 
 " theme
 Plug 'liuchengxu/space-vim-dark'
+Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'atelierbram/vim-colors_atelier-schemes'
-Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'yuttie/inkstained-vim'
 Plug 'glepnir/zephyr-nvim'
 
-
 " Search, Files, Buffer, Find...
-Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-which-key'
@@ -53,27 +49,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/VisIncr'
 Plug 'terryma/vim-expand-region'
-Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdcommenter'
 Plug 'psliwka/vim-smoothie'
-Plug 'dagwieers/asciidoc-vim'
 Plug 'danilamihailov/beacon.nvim'
-
-"-------------------------------------------------------
-" Separator, Separator, Separator, Separator, Separator
-"-------------------------------------------------------
-"Plug 'glepnir/dashboard-nvim'
-"Plug 'voldikss/vim-floaterm'
-"Plug 'lervag/vimtex'
-"Plug 'Yggdroot/LeaderF'
-"Plug 'mbbill/fencview'
 
 call plug#end()
 

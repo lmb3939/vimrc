@@ -33,21 +33,14 @@
 " Vim UI {
 
     " Basics {
-    set termguicolors
-    " show gap in two split windows
     set fillchars=vert:\ ,stl:\ ,stlnc:\
-    "set go=                         " close gui menu
-    set tabpagemax=15               " only show 15 tabs
     set showmode                    " Display the current mode
-
     " highlight current line
     au Winleave * set nocursorline nocursorcolumn
     au Winleave * set cursorline cursorcolumn
     set cursorline cursorcolumn
-
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LinerNr         " current line number row will have same background color in relative mode
-    "highlight clear CursorLineNr    " Remove highlight color from current line number
     set laststatus=2
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
@@ -75,15 +68,14 @@
     "color papercolor
     "color Atelier_SulphurpoolDark
     "color Atelier_SulphurpoolLight
-    "color inkstained
-    color zephyr
+    color inkstained
+    "color zephyr
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
+    set guifont=UbuntuMono\ Nerd\ Font:h14
     " }
 
-    highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
-    au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
 " }
 
 " Formatting {
@@ -101,24 +93,66 @@
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
     au FileType c,cpp,java, set mps+==:; " Match, to be used with %
-    "set pastetoggle=<F12>           " used in terminal
     " set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-    " Workaround vim-commentary for Haskell
-    " Workaround broken colour highlighting in Haskell
+    highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
+    au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
 " }
 
 " Edit {
 
     " Super VIM {
     let mapleader = "\<Space>"
-    "let maplocalleader = ","
 
     " Quickly edit/reload the vimrc file
     nmap <silent> <leader>ev :e $MYVIMRC<CR>
     nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-    " With a map leader it's possible to do extra key combinations
-    nnoremap <leader>q :wq!<CR>
+    " When editing a file, always jump to the last cursor position
+    autocmd BufReadPost *
+                \ if ! exists("g:leave_my_cursor_position_alone") |
+                \     if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \         exe "normal g'\"" |
+                \     endif |
+                \ endif
+
+    " Make VIM remember position in file after reopen
+    if has("autocmd")
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
+
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    "nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+    nnoremap ; :
+    nnoremap <ESC> :nohl<CR>
+    imap jj <ESC>
+
+    " Shift+*: do not goto next match
+    nnoremap <silent><expr> * v:count ? '*'
+                \ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+    nnoremap <silent><expr> g* v:count ? 'g*'
+                \ : ':execute "keepjumps normal! g*" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+
+    " Make a simple "search" text object.
+    vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+                \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+
+    " insert date e.g. 31Jan11
+    :inoremap \zd <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+    " insert filename
+    :inoremap \zf <C-R>=expand("%")<CR>
+
+    au FocusLost * silent! wa
+    " fold all but the matched area
+    nnoremap zpr :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>:set foldmethod=manual<CR><CR>
 
     " Delete trailing, ^m, etc.. {
     " Delete trailing spaces at line ending
@@ -137,33 +171,8 @@
     " }
 
     " Buffer, Tabs {
-    " Quickly open a buffer for scribble
-    "map <leader>b :e ~/buffer<cr>
-    " Close the current buffer
-    "map <leader>bd :Bclose<cr>:tabclose<cr>gT
-    map <leader>bd :bd<cr>
-    " Close all the buffers
-    map <leader>ba :bufdo bd<cr>
     map <leader>l :bnext<cr>
     map <leader>h :bprevious<cr>
-
-    " Useful mappings for managing tabs
-    map <S-H> gT
-    map <S-L> gt
-    map <leader>tn :tabnew<cr>
-    map <leader>to :tabonly<cr>
-    map <leader>tc :tabclose<cr>
-    map <leader>tm :tabmove
-    map <leader>t<leader> :tabnext
-    " Let 'tl' toggle between this and the last accessed tab
-    let g:lasttab = 1
-    nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-    au TabLeave * let g:lasttab = tabpagenr()
-    " Opens a new tab with the current buffer's path
-    " Super useful when editing files in the same directory
-    map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-    " Switch CWD to the directory of the open buffer
-    map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
     " }
 
@@ -180,56 +189,6 @@
     nnoremap <c-l> <c-w>l
     " }
 
-    " When editing a file, always jump to the last cursor position
-    autocmd BufReadPost *
-                \ if ! exists("g:leave_my_cursor_position_alone") |
-                \     if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \         exe "normal g'\"" |
-                \     endif |
-                \ endif
-
-    " Make VIM remember position in file after reopen
-    if has("autocmd")
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    endif
-
-    " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
-    " Allow using the repeat operator with a visual selection (!)
-    " http://stackoverflow.com/a/8064607/127816
-    vnoremap . :normal .<CR>
-
-    " Map <Leader>ff to display all lines with keyword under cursor
-    " and ask which one to jump to
-    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
-    nnoremap ; :
-    nnoremap <ESC> :nohl<CR>
-    imap jj <ESC>
-
-    " Shift+*: do not goto next match
-    nnoremap <silent><expr> * v:count ? '*'
-                \ : ':execute "keepjumps normal! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
-    nnoremap <silent><expr> g* v:count ? 'g*'
-                \ : ':execute "keepjumps normal! g*" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
-
-    " Make a simple "search" text object.
-    vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-                \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-    omap s :normal vs<CR>
-
-    " insert date e.g. 31Jan11
-    :inoremap \zd <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
-    " insert filename
-    :inoremap \zf <C-R>=expand("%")<CR>
-    " Diffsplit
-    nnoremap <C-F2> :vert diffsplit
-
-    :vmap sb \"zdi<b><C-R>z</b><ESC>
-    au FocusLost * silent! wa
-    " fold all but the matched area
-    nnoremap zpr :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>:set foldmethod=manual<CR><CR>
-
     " }
 
     " Basic Edit {
@@ -238,9 +197,7 @@
     set noeb
     set t_vb=
     set history=10
-
-    "set lazyredraw       " Don't redraw while executing macros (good performance config)
-
+    set lazyredraw       " Don't redraw while executing macros (good performance config)
     set magic            " For regular expression turn magic on
     set autoread         " auto reload when file was changed by other editor
     set autowrite
@@ -260,9 +217,9 @@
     set tabpagemax=15    " Only show 15 tabs
     "set scrolljump=5     " Lines to scroll when cursor leaves screen
     "set scrolloff=3      " Minimum lines to keep above and below cursor
-    "set foldenable        " Auto fold code
-    "set foldmethod=marker
-    "set foldmarker={{{,}}}
+    set foldenable        " Auto fold code
+    set foldmethod=marker
+    set foldmarker={{{,}}}
     " }
 
     " }
@@ -322,31 +279,6 @@
     endif
     " }
 
-    " Nerd Tree {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/nerdtree"))
-        nmap <F3> :NERDTreeToggle<cr>
-        " map <leader>e :NERDTreeFind<CR>
-        " nmap <leader>nt :NERDTreeFind<CR>
-        " Auto open NERDTree when start Vim
-        " autocmd vimenter * if !argc() | NERDTree | endif
-        " Close vim if the only window left open is a NERDTree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-        let NERDChristmasTree=0
-        let NERDTreeWinSize=30
-        let NERDTreeChDirMode=2
-        let NERDTreeQuitOnopen=1
-        let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
-        let NERDTreeMouseMode=2
-        let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-        " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
-        let NERDTreeShowBookmarks=1
-        let NERDTreeWinPos = "right"
-        let g:nerdtree_tabs_open_on_gui_startup=0
-    endif
-    " }
-
     " rainbow_paraentheses {
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/rainbow_parentheses.vim"))
         let g:rbpt_colorpairs = [
@@ -374,16 +306,6 @@
         au Syntax   * RainbowParenthesesLoadSquare
         au Syntax   * RainbowParenthesesLoadBraces
         au Syntax   * RainbowParenthesesLoadChevrons
-    endif
-    " }
-
-    " Undotree {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/undotree"))
-        nnoremap <F4> : UndotreeToggle<CR>
-        if has("persistent_undo")
-            set undodir=~/.undodir/
-            set undofile
-        endif
     endif
     " }
 
@@ -463,19 +385,6 @@
         highlight SignifySignAdd cterm=bold ctermbg=237 ctermfg=119
     endif
     "}
-
-    " is.vim {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/is.vim"))
-        " Integration of vim-anzu
-        map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-        map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
-        " Integration of vim-asterisk
-        map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-        map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-        map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-        map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
-    endif
-    " }
 
     " WhichKey {
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-which-key"))
@@ -563,17 +472,11 @@
     " }
 
     " After
-    " session {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-session"))
-        let g:session_autosave = 'no'
-    endif
-    " }
     " NeatStatusLine {
     if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-neatstatus"))
         let g:NeatStatusLine_color_insert = 'guifg=#ffffff guibg=#ff0000 gui=bold ctermfg=15 ctermbg=9 cterm=bold'
     endif
     " }
-
     " }
 
 " Functions {
