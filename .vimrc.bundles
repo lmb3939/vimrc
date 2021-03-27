@@ -5,7 +5,7 @@ set rtp+=~/.fzf
 call plug#begin('~/.vimrc_oob/.vim/bundle')
 
 " Syntax, Snippets
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -21,7 +21,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " theme
 Plug 'liuchengxu/space-vim-dark'
-Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'dracula/vim', { 'as': 'dracula' }

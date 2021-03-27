@@ -94,8 +94,8 @@
     set splitbelow                  " Puts new split windows to the bottom of the current
     au FileType c,cpp,java, set mps+==:; " Match, to be used with %
     " set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-    highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
-    au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
+    "highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
+    "au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
 " }
 
 " Edit {
@@ -225,28 +225,6 @@
     " }
 
 " Plugin {
-
-    " ale {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/ale"))
-        let g:ale_lint_on_enter = 0
-        let g:ale_sign_column_always = 1
-        let g:ale_sign_error = '✗ '
-        let g:ale_sign_warning = '⚡'
-        let g:ale_sign_info = '--'
-        let g:ale_echo_msg_error_str = 'E'
-        let g:ale_echo_msg_warning_str = 'W'
-        let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-        let g:ale_linters = {
-                    \ 'systemverilog': ['xvlog'],
-                    \ 'verilog': ['xvlog'],
-                    \ 'c': ['gcc'],
-                    \ 'python': ['pyflakes'],
-                    \ 'perl': ['perlcritic']
-                    \ }
-        let g:airline#extensions#ale#error_symbol = '✗ '
-        let g:airline#extensions#ale#warning_symbol = '⚡ '
-    endif
-    "}
 
     " auto-pairs{
     let g:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"'}
