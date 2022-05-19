@@ -1,11 +1,11 @@
 #                       GNU GENERAL PUBLIC LICENSE
-#                           Copyright 2020 XuJYC
+#                           Copyright 2022 jizhoulishi
 #
 
 ############################  SETUP PARAMETERS
-app_name='XuJYC-vimrc_oob'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_oob"
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/XuJYC/vimrc.git'
+app_name='jizhoulishi-vimrc'
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc"
+[ -z "$REPO_URI" ] && REPO_URI='https://github.com/jizhoulishi/vimrc.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
 fork_maintainer='0'
@@ -74,7 +74,7 @@ curl_plug(){
     ## install plug
     ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ## TODO:
-    local tmp_file="$HOME/.vimrc_oob/plug.vim"
+    local tmp_file="$HOME/.vimrc/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
     cp $tmp_file $plug_path$dst_file
@@ -157,4 +157,4 @@ create_symlinks "$APP_PATH" \
 setup_vundle    "$APP_PATH/.vimrc.bundles"
 
 msg             "\nThanks for installing $app_name."
-msg             "Â© `date +%Y` XuJYC"
+msg             "Â© `date +%Y` jizhoulishi"
