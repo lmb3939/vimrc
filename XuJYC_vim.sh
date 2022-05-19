@@ -69,16 +69,15 @@ variable_set() {
 
 curl_plug(){
     local plug_path="$1"
-    local tmp_path="$2"
     msg "Trying to install plug.vim"
 
     ## install plug
     ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ## TODO:
-    local tmp_file="$tmp_path/plug.vim"
+    local tmp_file="$APP_PATH/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
-    cp $tmp_file $plug_path $dst_file
+    cp $tmp_file $plug_path$dst_file
 
     success "Successfully curled Vim plug."
 
@@ -147,9 +146,7 @@ sync_repo       "$APP_PATH" \
                 "$REPO_BRANCH" \
                 "$app_name"
 
-# curl_plug      "$APP_PATH/.vim/autoload/plug.vim"
-curl_plug       "$APP_PATH/.vim/autoload/" \
-                "$APP_PATH"
+curl_plug       "$APP_PATH/.vim/autoload/"
 
 create_symlinks "$APP_PATH" \
                 "$HOME"
@@ -159,3 +156,5 @@ setup_vundle    "$APP_PATH/.vimrc.bundles"
 
 msg             "\nThanks for installing $app_name."
 msg             "Â© `date +%Y` jizhoulishi"
+
+exec /bin/bash
