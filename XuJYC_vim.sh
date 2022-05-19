@@ -4,7 +4,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='jizhoulishi-vimrc'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc"
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_neovim"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/jizhoulishi/vimrc.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
