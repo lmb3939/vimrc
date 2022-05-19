@@ -4,7 +4,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='jizhoulishi-vimrc'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc"
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_neoivm"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/jizhoulishi/vimrc.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
@@ -77,7 +77,7 @@ curl_plug(){
     local tmp_file="$HOME/.vimrc/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
-    cp $tmp_file $plug_path$dst_file
+    cp $tmp_file $plug_path $dst_file
 
     success "Successfully curled Vim plug."
 
@@ -112,7 +112,6 @@ create_symlinks() {
 
     lnif "$source_path/.vimrc"         "$target_path/.vimrc"
     lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
-    ##lnif "$source_path/.vim"           "$target_path/.vim"
 
     ret="$?"
     success "Setting up vim symlinks."
