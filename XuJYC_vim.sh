@@ -6,7 +6,7 @@
 app_name='XuJYC-vimrc_oob'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_oob"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/XuJYC/vimrc.git'
-[ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_oob'
+[ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
 fork_maintainer='0'
 
@@ -141,7 +141,7 @@ variable_set "$HOME"
 program_must_exist "vim"
 program_must_exist "git"
 
-## sync My darklight repo
+## sync repo
 sync_repo       "$APP_PATH" \
                 "$REPO_URI" \
                 "$REPO_BRANCH" \
