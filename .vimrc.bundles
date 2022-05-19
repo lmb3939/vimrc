@@ -91,3 +91,7 @@ call defx#custom#option('_', {
     \   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc,*.swp'
     \ })
 autocmd FileType defx call s:defx_mappings()
+
+" Defx Notes
+""  python -m pip install --user --upgrade pynvim
+""  Open nvim, exec :UpdateRemotePlugins, and reopen nvim
