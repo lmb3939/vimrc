@@ -72,12 +72,12 @@ curl_plug(){
     msg "Trying to install plug.vim"
 
     ## install plug
-    ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ## TODO:
-    local tmp_file="$APP_PATH/plug.vim"
-    local dst_file="plug.vim"
-    mkdir -p $plug_path
-    cp $tmp_file $plug_path $dst_file
+    # local tmp_file="$APP_PATH/plug.vim"
+    # local dst_file="plug.vim"
+    # mkdir -p $plug_path
+    # cp $tmp_file $plug_path $dst_file
 
     success "Successfully curled Vim plug."
 
