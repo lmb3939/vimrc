@@ -6,7 +6,7 @@
 app_name='jizhoulishi-vimrc'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/jizhoulishi/vimrc.git'
-[ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc'
+[ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
 fork_maintainer='0'
 
