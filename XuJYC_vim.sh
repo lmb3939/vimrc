@@ -4,7 +4,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='jizhoulishi-vimrc'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_neoivm"
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.vimrc_neovim"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/jizhoulishi/vimrc.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='vimrc_neovim'
 debug_mode='0'
@@ -74,7 +74,7 @@ curl_plug(){
     ## install plug
     ## curl -fLo "$plug_path" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ## TODO:
-    local tmp_file="$HOME/.vimrc_neovim/plug.vim"
+    local tmp_file="$APP_PATH/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
     cp $tmp_file $plug_path$dst_file
