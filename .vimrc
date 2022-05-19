@@ -231,7 +231,7 @@
     " }
 
     " Coc{
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/coc.nvim"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/coc.nvim"))
         inoremap <silent><expr> <c-space> coc#refresh()
         :nnoremap <space>e :CocCommand explorer<CR>
     endif
@@ -243,7 +243,7 @@
     " }
 
     " vim-tex{
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vimtex"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vimtex"))
         autocmd TextChanged,TextChangedI <buffer> silent write
         let g:tex_flavor = 'latex'
         "let g:vimtex_view_method='mupdf'
@@ -258,7 +258,7 @@
     " }
 
     " rainbow_paraentheses {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/rainbow_parentheses.vim"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/rainbow_parentheses.vim"))
         let g:rbpt_colorpairs = [
                     \ ['brown',       'RoyalBlue3'],
                     \ ['Darkblue',    'SeaGreen3'],
@@ -288,7 +288,7 @@
     " }
 
     " airline {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-airline"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-airline"))
         let g:airline#_powerline_fonts = 1
         if !exists ('g:airline_symbols')
             let g:airline_symbols = {}
@@ -317,7 +317,7 @@
     " }
 
     " easy align{
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-easy-align"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-easy-align"))
         nmap ga :EasyAlign<CR>
         xmap ga :EasyAlign<CR>
     endif
@@ -332,7 +332,7 @@
     " }
 
     " expand region {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-expand-region"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-expand-region"))
         "vmap v <Plug>(expand_region_expand)
         "vmap <C-v> <Plug>(expand_region_shrink)
         map K <Plug>(expand_region_expand)
@@ -341,7 +341,7 @@
     " }
 
     " vim-indent-guides {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-indent-guides/"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-indent-guides/"))
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
         let g:indent_guides_enable_on_vim_startup = 1
@@ -349,7 +349,7 @@
     " }
 
     " vim supertab {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/supertab"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/supertab"))
         let g:SuperTabDefaultCompletionType = "context"
         let g:SuperTabRetainCompletionType=2
         let g:SuperTabDefaultCompletionType="<c-n>"
@@ -357,7 +357,7 @@
     " }
 
     "signify {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-signify"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-signify"))
         let g:signify_vcs_list=['git']
         highlight DiffAdd cterm=bold ctermbg=none ctermfg=119
         highlight SignifySignAdd cterm=bold ctermbg=237 ctermfg=119
@@ -365,7 +365,7 @@
     "}
 
     " WhichKey {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-which-key"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-which-key"))
         nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
         nnoremap <silent> <localleader> :WhichKey ','<CR>
         set timeoutlen=500
@@ -428,7 +428,7 @@
     "}
 
     " quickui {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-quickui"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-quickui"))
         call quickmenu#reset()
 
         "let g:quickmenu_options = "HL"
@@ -451,7 +451,7 @@
 
     " After
     " NeatStatusLine {
-    if isdirectory(expand("~/.vimrc_oob/.vim/bundle/vim-neatstatus"))
+    if isdirectory(expand("~/.vimrc_neovim/.vim/bundle/vim-neatstatus"))
         let g:NeatStatusLine_color_insert = 'guifg=#ffffff guibg=#ff0000 gui=bold ctermfg=15 ctermbg=9 cterm=bold'
     endif
     " }
