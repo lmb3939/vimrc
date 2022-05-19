@@ -77,7 +77,7 @@ curl_plug(){
     local tmp_file="$APP_PATH/plug.vim"
     local dst_file="plug.vim"
     mkdir -p $plug_path
-    cp $tmp_file $plug_path $dst_file
+    cp $tmp_file $plug_path$dst_file
 
     success "Successfully curled Vim plug."
 
