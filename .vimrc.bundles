@@ -15,7 +15,7 @@ Plug 'dkprice/vim-easygrep'
 
 " UI
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
