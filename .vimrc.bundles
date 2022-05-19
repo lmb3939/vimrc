@@ -1,8 +1,8 @@
 
-set rtp+=~/.vimrc_oob/.vim
+set rtp+=~/.vimrc/.vim
 set rtp+=~/.fzf
 
-call plug#begin('~/.vimrc_oob/.vim/bundle')
+call plug#begin('~/.vimrc/.vim/bundle')
 
 " Syntax, Snippets
 "Plug 'w0rp/ale'
