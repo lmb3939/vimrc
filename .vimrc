@@ -2,7 +2,7 @@
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 :
 "
 "    This is the personal .vimrc file of lmb.
-"    Copyright 2021 lmb.
+"    Copyright 2022 lmb.
 " }
 
 " plugin manager {
