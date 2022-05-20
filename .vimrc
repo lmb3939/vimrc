@@ -1,8 +1,8 @@
 " Modeline and Notes {
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 :
 "
-"    This is the personal .vimrc file of XuJYC.
-"    Copyright 2021 XuJYC.
+"    This is the personal .vimrc file of lmb.
+"    Copyright 2021 lmb.
 " }
 
 " plugin manager {
@@ -80,19 +80,20 @@
 
 " Formatting {
 
-    set foldcolumn=1                " add a bit extra margin to the left
-    set nowrap                      " Do not wrap long lines
-    set autoindent                  " Indent at the same level of the previous line
-    set smartindent                 " si
-    set shiftwidth=4                " Use indents of 4 spaces
-    set smarttab                    " Be smart when using tabs ;)
-    set expandtab                   " Tabs are spaces, not tabs
-    set tabstop=4                   " An indentation every four columns
-    set softtabstop=4               " Let backspace delete indent
-    set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-    set splitright                  " Puts new vsplit windows to the right of the current
-    set splitbelow                  " Puts new split windows to the bottom of the current
+    set foldcolumn=1                     " add a bit extra margin to the left
+    set nowrap                           " Do not wrap long lines
+    set autoindent                       " Indent at the same level of the previous line
+    set smartindent                      " si
+    set shiftwidth=4                     " Use indents of 4 spaces
+    set smarttab                         " Be smart when using tabs ;)
+    set expandtab                        " Tabs are spaces, not tabs
+    set tabstop=4                        " An indentation every four columns
+    set softtabstop=4                    " Let backspace delete indent
+    set nojoinspaces                     " Prevents inserting two spaces after punctuation on a join (J)
+    set splitright                       " Puts new vsplit windows to the right of the current
+    set splitbelow                       " Puts new split windows to the bottom of the current
     au FileType c,cpp,java, set mps+==:; " Match, to be used with %
+
     " set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     "highlight OverLength ctermbg=red ctermfg=white guibg=#ff6600
     "au BufRead,BufNewFile *.v,*.c match OverLength /\%80v.*/
@@ -129,7 +130,7 @@
 
     " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
-    "nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+    nmap <Leader>w [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
     nnoremap ; :
     nnoremap <ESC> :nohl<CR>
@@ -310,8 +311,11 @@
         let g:airline_right_alt_sep = ''
         let g:airline_symbols.branch = ''
         let g:airline_symbols.readonly = ''
+        let g:airline_symbols.linenr = ' :'
+        let g:airline_symbols.maxlinenr = ''
         "let g:airline_symbols.linenr = '¶'
-        let g:airline_symbols.linenr = '☰'
+        "let g:airline_symbols.linenr = '☰'
+        let g:airline_symbols.dirty='⚡'
     endif
 
     " }
