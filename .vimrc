@@ -69,11 +69,10 @@
     "color Atelier_SulphurpoolDark
     "color Atelier_SulphurpoolLight
     color inkstained
-    "color zephyr
 
     hi Cursor guifg=#000000 guibg=#FE8019
     hi comment gui=none guifg=#008C8C
-    set guifont=UbuntuMono\ Nerd\ Font:h14
+    set guifont=UbuntuMono\ Nerd\ Font:h20
     " }
 
 " }
